@@ -1,19 +1,20 @@
 import React from 'react';
+import './Cart.css';
 
 const Cart = ({ cart, hanldeRemoveItem }) => {
 
     let message;
-    if (cart.length === 0) {
-        message = <p>please buy atleast one item !!!</p>
+    if (cart.length >= 3) {
+        message = <p>Don't buy more</p>
     }
     else {
-        message = <p>Thanks for buying !</p>
+        message = <p>Buy more</p>
     }
 
     return (
         <div>
-            <h2>Order Summary</h2>
-            <p>Order Quantity: {cart.length}</p>
+            <h3 className={cart.length === 2 ? 'blue' : 'orange'}>Order Summary</h3>
+            <p className={`bold ${cart.length === 3 ? 'purple' : 'yellow'}`}>Order Quantity: {cart.length}</p>
             {
                 cart.map(tshirt => <p
                     key={tshirt._id}
@@ -23,14 +24,21 @@ const Cart = ({ cart, hanldeRemoveItem }) => {
                 </p>)
             }
             {
-                message
+                // message
             }
-            {cart.length === 3 ? <p>3 jon k ki gift korba?</p> : <p>kino kino</p>}
-            <p>And operator</p>
-            {cart.length === 2 && <h2>Double Items</h2>}
-            {cart.length === 4 || <p>Four Items na</p>}
+            {/* {cart.length === 2 ? <p>buy more for me</p> : ''} */}
+            {/* {cart.length === 2 && <p>I want to buy</p>} */}
+            {cart.length === 3 || <p>buy more</p>}
         </div>
     );
 };
 
 export default Cart;
+
+/*
+Conditinal Rendering: 
+1. Use element in a variable and then use if-else to set value.
+2. Ternary operator condition ? true : false.
+3. && operator (if condition is true, I want to display something).
+4. || operator (if condition is false, I want to display something).
+*/
